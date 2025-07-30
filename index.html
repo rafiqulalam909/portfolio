@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Rafiqul Alam Sarker - Professional Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- CSS Custom Properties (Theme) --- */
+        :root {
+            --bg-color: #121212;
+            --primary-color: #1e1e1e;
+            --secondary-color: #2a2a2a;
+            --text-color: #e0e0e0;
+            --accent-color: #00aaff;
+            --accent-hover-color: #0088cc;
+        }
+
+        /* --- Global Styles & Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.2rem; color: var(--accent-color); }
+        p { margin-bottom: 1rem; }
+        a { color: var(--accent-color); text-decoration: none; }
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--secondary-color);
+            overflow: hidden; /* Prevents scrollbars during animation */
+        }
+
+        /* --- Utility Classes --- */
+        .text-accent {
+            color: var(--accent-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover-color);
+        }
+
+        /* --- Header / Navigation --- */
+        .main-header {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .main-header .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-header .main-nav ul li {
+            margin-left: 2rem;
+        }
+
+        .main-header .main-nav a {
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .main-header .main-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            padding-top: 10rem; /* Account for fixed header */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        #hero .intro-text {
+            margin-bottom: 2rem;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+        }
+
+        /* --- About Section --- */
+        #about .container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        #about .about-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            flex-shrink: 0;
+        }
+
+        /* --- Generic Grid for Skills & Hobbies --- */
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .grid-item {
+            background: var(--primary-color);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.1);
+        }
+
+        .grid-item h3 {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .grid-item .icon {
+            font-size: 2.5rem;
+        }
+
+        /* --- Education Section --- */
+        .education-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        .education-item {
+            background: var(--primary-color);
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .education-item h3 {
+            margin-bottom: 0.25rem;
+        }
+        .education-item p {
+            margin-bottom: 0;
+            color: #aaa;
+        }
+
+        /* --- Projects Section --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-content p {
+            flex-grow: 1;
+        }
+
+        .project-links a {
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+
+        /* --- Contact Section --- */
+        .contact-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: left;
+        }
+        .contact-list li {
+            background: var(--primary-color);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--secondary-color);
+            font-size: 1.1rem;
+        }
+        .contact-list strong {
+            color: var(--accent-color);
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            padding: 2rem 0;
+            text-align: center;
+            background: var(--primary-color);
+        }
+        
+        .social-links a {
+            margin: 0 0.75rem;
+        }
+
+        .social-links svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+            transition: fill 0.3s ease;
+        }
+        
+        .social-links a:hover svg {
+            fill: var(--accent-color);
+        }
+        
+        /* --- SCROLL ANIMATION STYLES --- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive Design --- */
+        @media(max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            
+            #hero h1 { font-size: 3rem; }
+            
+            #about .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .main-header .main-nav { display: none; } /* Simple hiding for mobile, can be replaced with a hamburger menu */
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Md Rafiqul Alam Sarker</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <div class="container">
+                <div class="intro-text">
+                    <p>Hello, I'm</p>
+                    <h1>Md Rafiqul Alam Sarker</h1>
+                 <p> <span class="text-accent">Building the Future: An Evolving IT Enthusiast</span></p>
+                </div>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="container">
+                <img src="images/about.jpg" alt="A photo of Md Rafiqul Alam Sarker" class="about-image hidden">
+                <div class="about-content hidden">
+                    <h2>About Me</h2>
+                    <p>
+                        My name is <strong>Md Rafiqul Alam Sarker</strong>, and I am passionate about learning and personal growth. I enjoy exploring new knowledge in areas like programming, technology, and real-world problem-solving.
+                    </p>
+                    <p>
+                        I am hardworking, curious, and always open to new challenges. I believe in continuous development and aim to build a meaningful and impactful career.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SKILLS SECTION -->
+        <section id="skills">
+            <div class="container">
+                <h2 style="text-align: center;" class="hidden">My Skills</h2>
+                <div class="item-grid">
+                    <div class="grid-item hidden">
+                        <span class="icon">💻</span>
+                        <h3>C / C++</h3>
+                    </div>
+                    <div class="grid-item hidden">
+                        <span class="icon">☕</span>
+                        <h3>Java</h3>
+                    </div>
+                    <div class="grid-item hidden">
+                        <span class="icon">🐍</span>
+                        <h3>Python</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education">
+            <div class="container">
+                <h2 style="text-align: center;" class="hidden">Education</h2>
+                <div class="education-list">
+                    <div class="education-item hidden">
+                        <h3>B.Sc. in Computer Science & Engineering</h3>
+                        <p>University of Asia Pacific (2023 – Present)</p>
+                    </div>
+                    <div class="education-item hidden">
+                        <h3>Higher Secondary Certificate (HSC)</h3>
+                        <p>Hamdard Public College, 2021 (GPA: 5.00)</p>
+                    </div>
+                    <div class="education-item hidden">
+                        <h3>Secondary School Certificate (SSC)</h3>
+                        <p>Dhanmondi Government Boys' High School, 2019 (GPA: 4.67)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOBBIES SECTION -->
+<section id="hobbies">
+            <div class="container">
+                <h2 style="text-align: center;" class="hidden">✨Hobbies</h2>
+                <div class="item-grid">
+                    <div class="hobby-item">
+                        <img src="images/cric.jpg" alt="">
+                        <!-- <span class="icon">🏏</span> -->
+                         <div class="item-content">
+                        <h3>Playing Cricket</h3>
+                    </div>
+                    </div>
+                     <div class="hobby-item">
+                        <img src="images/foot.jpg" alt="">
+                        <!-- <span class="icon">🏏</span> -->
+                         <div class="item-content">
+                        <h3>Playing Football</h3>
+                    </div>
+                    </div>
+                     <div class="hobby-itemm">
+                        <img src="images/travel.jpg" alt="">
+                        <!-- <span class="icon">🏏</span> -->
+                         <div class="item-content">
+                        <h3>Travelling</h3>
+                    </div>
+                    </div>
+                      <div class="hobby-itemmm">
+                        <img src="images/pht2.jpg" alt="">
+                        <!-- <span class="icon">🏏</span> -->
+                         <div class="item-content">
+                        <h3>Photography</h3>
+                    </div>
+                     
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <div class="container">
+                <h2 style="text-align: center;" class="hidden">Featured Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card hidden">
+                        <img src="images/JAVA.gif" alt="">
+                        <div class="project-content">
+                            <h3>Java-Med Pharmha</h3>
+                            <p>A comprehensive inventory management system designed to streamline operations for pharmaceutical businesses. It tackles the challenges of tracking stock, managing sales, and ensuring efficient distribution. Developed using Java for robust back-end logic, JavaFX for an intuitive graphical user interface.</p>
+                        
+                        </div>
+                    </div>
+                    <div class="project-card hidden">
+                        <img src="images/dbms2.gif" alt="Screenshot of Project Two">
+                        <div class="project-content">
+                            <h3>DBMS-Blood Bank Management System</h3>
+                            <p>A Blood Bank Management System utilizing SQL to manage donor data, inventory, requests, and transfusion records, focusing on data integrity and rapid querying for urgent needs.</p>
+
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <div class="container" style="text-align: center;">
+                <h2 class="hidden">Get In Touch</h2>
+                <p class="hidden">I'm currently open to new opportunities and collaborations. Here's how you can reach me:</p>
+                <ul class="contact-list hidden">
+                    <li><strong>Email:</strong> rafiqulalamrafi04@gmail.com</li>
+                    <li><strong>Phone:</strong> 01890316657</li>
+                    <li><strong>Location:</strong> 44/B, West Rajabazar, Dhaka-1207</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="social-links">
+
+    <a href="https://github.com/rafiqulalam909" target="_blank" aria-label="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.54 1.32.12 2.35.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.57 4.93.36.31.68.92.68 1.85v2.72c0 .27.18.58.69.48A10 10 0 0 0 22 12 10 10 0 0 0 12 2Z"/></svg>
+    </a>
+
+    <a href="https://www.facebook.com/share/1FFTsJGqL8/?mibextid=qi2Omg" target="_blank" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.04c0 4.92 3.58 9.04 8.29 9.87V14.8h-2.92v-2.76h2.92v-2.1c0-2.88 1.76-4.47 4.33-4.47 1.24 0 2.3.09 2.61.13v2.33h-1.38c-1.36 0-1.63.64-1.63 1.58v1.8h2.9L18.44 14.8h-2.92v6.11c4.71-.83 8.29-4.95 8.29-9.87 0-5.51-4.5-10-10-10z"/></svg>
+    </a>
+
+    <a href="https://www.instagram.com/_._rafi_.___?igsh=NHd1MnZ5Z3RyaXps" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2m-.2 2A5.8 5.8 0 0 0 4 7.8v8.4c0 1.3.4 2.5 1.2 3.4.9.8 2.1 1.2 3.4 1.2h8.4c1.3 0 2.5-.4 3.4-1.2.8-.9 1.2-2.1 1.2-3.4V7.8c0-1.3-.4-2.5-1.2-3.4-.9-.8-2.1-1.2-3.4-1.2H7.8M12 6a6 6 0 0 0-6 6 6 6 0 0 0 6 6 6 6 0 0 0 6-6 6 6 0 0 0-6-6m0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m6.5-3A1.5 1.5 0 1 0 18 4.5 1.5 1.5 0 0 0 16.5 3z"/></svg>
+    </a>
+
+    </div>
+            <p>&copy; 2025 Md Rafiqul Alam Sarker. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- SCROLL-BASED ANIMATION ---
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            });
+
+            const hiddenElements = document.querySelectorAll('.hidden');
+            hiddenElements.forEach((el) => observer.observe(el));
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: "#00aaff"
+        },
+        shape: {
+          type: "circle",
+        },
+        opacity: {
+          value: 0.3,
+          random: true
+        },
+        size: {
+          value: 3,
+          random: true
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00aaff",
+          opacity: 0.2,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          out_mode: "bounce"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "grab"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          }
+        },
+        modes: {
+          grab: {
+            distance: 200,
+            line_linked: {
+              opacity: 0.4
+            }
+          },
+          push: {
+            particles_nb: 4
+          }
+        }
+      },
+      retina_detect: true
+    });
+    </script>
+</body>
+</html>

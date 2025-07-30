@@ -1,0 +1,127 @@
+/* --- Animated Gradient Background --- */
+body::before {
+    filter: blur(8px);
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a1a1a);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: gradientBG 15s ease infinite;
+    opacity: 0.3; /* Optional: Adjust to blend with content */
+}
+
+/* Keyframes for animation */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* --- Particle Background --- */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: var(--bg-color); /* Optional fallback */
+}
+
+---
+
+/* --- Hobbies Section --- */
+#hobbies {
+    margin: 40px 0;
+}
+
+#hobbies h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* The .item-grid from your HTML for the overall container */
+.item-grid {
+    display: flex;
+    flex-direction: column; /* Stacks the hobby items vertically */
+    gap: 20px; /* Space between each hobby item */
+    padding: 0 0px; /* Optional: Add some horizontal padding */
+}
+
+/* Unified styles for all hobby item cards */
+.hobby-item,
+.hobby-itemm,
+.hobby-itemmm {
+    display: flex; /* Makes content inside flex (side-by-side) */
+    align-items: center; /* Vertically aligns image and text in the middle */
+    gap: 15px; /* Space between the image and the text */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px 30px; /* Padding inside each hobby item card */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(4px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* For hover effects */
+}
+
+.hobby-item:hover,
+.hobby-itemm:hover,
+.hobby-itemmm:hover {
+    transform: translateY(-5px); /* Simple hover animation */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Individual Image Sizing --- */
+
+/* Image for 'hobby-item' (e.g., Cricket, Football) */
+.hobby-item img {
+    width: 180px; /* Your requested width */
+    height: 100px; /* Your requested height */
+    object-fit: cover;
+    border-radius: 50%; /* Makes all images circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+/* Image for 'hobby-itemm' (e.g., Travelling) */
+.hobby-itemm img {
+    width: 90px; /* Your requested width */
+    height: 80px; /* Your requested height */
+    object-fit: cover;
+    border-radius: 50%; /* Makes all images circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+/* Image for 'hobby-itemmm' (e.g., Photography) */
+.hobby-itemmm img {
+    width: 150px; /* Your requested width */
+    height: 90px; /* Your requested height */
+    object-fit: cover;
+    border-radius: 50%; /* Makes all images circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+/* --- Text Content Styling --- */
+.item-content {
+    flex-grow: 1; /* Allows the content to take up available space */
+    text-align: left; /* Align text to the left within its content div */
+}
+
+.item-content h3 {
+    margin: 0; /* Remove default margin from h3 */
+    font-size: 1.4em; /* Increased font size for better readability */
+    color: #ffffff;
+}
